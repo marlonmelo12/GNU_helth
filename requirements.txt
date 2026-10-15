@@ -1,0 +1,8 @@
+psycopg2-binary>=2.9.9
+pandas>=2.2.0
+pytest>=8.0.0
+trytond>=7.0.0,<7.1.0
+proteus>=7.0.0,<7.1.0
+pytz>=2024.1
+python-dotenv>=1.0.1
+duckdb>=1.0.0

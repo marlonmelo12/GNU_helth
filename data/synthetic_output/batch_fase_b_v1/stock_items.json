@@ -1,0 +1,902 @@
+[
+  {
+    "id": "MED_0001",
+    "name": "Dipirona Sódica 500mg/mL Ampola 2mL",
+    "category": "Analgésico/Antitérmico",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 3271,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0002",
+    "name": "Ceftriaxona Pó para Solução Injetável 1g",
+    "category": "Antibiótico",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 1446,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0003",
+    "name": "Azitromicina 500mg Comprimido",
+    "category": "Antibiótico",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 2398,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0004",
+    "name": "Captopril 25mg Comprimido",
+    "category": "Anti-hipertensivo",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 3920,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0005",
+    "name": "Cefazolina 1g Frasco-Ampola",
+    "category": "Antibiótico Cirúrgico",
+    "uom": "Frasco-Ampola",
+    "location": "Almoxarifado Central",
+    "quantity_available": 367,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0006",
+    "name": "Metronidazol 500mg/100mL Bolsa",
+    "category": "Antimicrobiano",
+    "uom": "Bolsa",
+    "location": "Farmácia Central",
+    "quantity_available": 105,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0007",
+    "name": "Soro Fisiológico 0.9% 500mL Bolsa",
+    "category": "Solução Parenteral",
+    "uom": "Bolsa",
+    "location": "Almoxarifado Central",
+    "quantity_available": 7765,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0008",
+    "name": "Soro Fisiológico 0.9% 1000mL Bolsa",
+    "category": "Solução Parenteral",
+    "uom": "Bolsa",
+    "location": "Almoxarifado Central",
+    "quantity_available": 6000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0009",
+    "name": "Ondansetrona 4mg/2mL Ampola",
+    "category": "Antiemético",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 2435,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0010",
+    "name": "Tramadol Cloridrato 50mg/mL Ampola",
+    "category": "Analgésico Opióide",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 0,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0011",
+    "name": "Insulina Regular 100 UI/mL Frasco 10mL",
+    "category": "Hipoglicemiante",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 452,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0012",
+    "name": "Insulina NPH 100 UI/mL Frasco 10mL",
+    "category": "Hipoglicemiante",
+    "uom": "Frasco",
+    "location": "Farmácia Central",
+    "quantity_available": 800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0013",
+    "name": "Seringa Descartável 5mL com Agulha",
+    "category": "Insumo Hospitalar",
+    "uom": "Unidade",
+    "location": "Almoxarifado Central",
+    "quantity_available": 20000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0014",
+    "name": "Equipo para Infusão Macrogotas",
+    "category": "Insumo Hospitalar",
+    "uom": "Unidade",
+    "location": "Almoxarifado Central",
+    "quantity_available": 10000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0015",
+    "name": "Cateter Intravenoso Periférico 20G",
+    "category": "Insumo Hospitalar",
+    "uom": "Unidade",
+    "location": "Almoxarifado Central",
+    "quantity_available": 12000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0016",
+    "name": "Meropenem 1g Pó para Injeção",
+    "category": "Antibiótico",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0017",
+    "name": "Vancomicina Cloridrato 500mg Pó Injetável",
+    "category": "Antibiótico",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0018",
+    "name": "Piperacilina + Tazobactam 4.5g Injetável",
+    "category": "Antibiótico",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0019",
+    "name": "Ciprofloxacino 200mg/100mL Solução para Infusão",
+    "category": "Antibiótico",
+    "uom": "Bolsa",
+    "location": "Farmácia Central",
+    "quantity_available": 1800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0020",
+    "name": "Oxacilina Sódica 500mg Frasco-Ampola",
+    "category": "Antibiótico",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 2200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0021",
+    "name": "Amoxicilina + Clavulanato 500/125mg Comprimido",
+    "category": "Antibiótico",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 3500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0022",
+    "name": "Gentamicina Sulfato 80mg/2mL Ampola",
+    "category": "Antibiótico",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 1400,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0023",
+    "name": "Amicacina Sulfato 500mg/2mL Ampola",
+    "category": "Antibiótico",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 1100,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0024",
+    "name": "Sulfametoxazol + Trimetoprima 400/80mg Comprimido",
+    "category": "Antimicrobiano",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 2500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0025",
+    "name": "Claritromicina 500mg Comprimido",
+    "category": "Antibiótico",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 1600,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0026",
+    "name": "Fluconazol 2mg/mL Bolsa 100mL",
+    "category": "Antifúngico",
+    "uom": "Bolsa",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0027",
+    "name": "Paracetamol 500mg Comprimido",
+    "category": "Analgésico/Antitérmico",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 6000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0028",
+    "name": "Cetoprofeno 100mg Pó Injetável IV",
+    "category": "Anti-inflamatório",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 3200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0029",
+    "name": "Morfina Sulfato 10mg/mL Ampola 1mL",
+    "category": "Analgésico Opióide",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0030",
+    "name": "Morfina Sulfato 1mg/mL Ampola 2mL",
+    "category": "Analgésico Opióide",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0031",
+    "name": "Fentanila Citrato 50mcg/mL Frasco 10mL",
+    "category": "Analgésico Opióide",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 900,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0032",
+    "name": "Ibuprofeno 600mg Comprimido",
+    "category": "Anti-inflamatório",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 4000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0033",
+    "name": "Tenoxicam 20mg Pó Injetável Frasco",
+    "category": "Anti-inflamatório",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 1800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0034",
+    "name": "Codeína Fosfato 30mg Comprimido",
+    "category": "Analgésico Opióide",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 2000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0035",
+    "name": "Epinefrina (Adrenalina) 1mg/mL Ampola 1mL",
+    "category": "Vasopressor/Urgência",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0036",
+    "name": "Noradrenalina 2mg/mL Ampola 4mL",
+    "category": "Vasopressor/UTI",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 2500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0037",
+    "name": "Atropina Sulfato 0.25mg/mL Ampola 1mL",
+    "category": "Anticolinérgico/Urgência",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 2000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0038",
+    "name": "Amiodarona Cloridrato 50mg/mL Ampola 3mL",
+    "category": "Antiarrítmico",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0039",
+    "name": "Dopamina Cloridrato 5mg/mL Ampola 10mL",
+    "category": "Inotrópico",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0040",
+    "name": "Dobutamina Cloridrato 12.5mg/mL Frasco 20mL",
+    "category": "Inotrópico",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1100,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0041",
+    "name": "Nitroglicerina 5mg/mL Frasco 10mL",
+    "category": "Vasodilatador",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 700,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0042",
+    "name": "Nitroprussiato de Sódio 25mg/mL Frasco 2mL",
+    "category": "Vasodilatador",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 517,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0043",
+    "name": "Enalapril Maleato 10mg Comprimido",
+    "category": "Anti-hipertensivo",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 5000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0044",
+    "name": "Losartana Potássica 50mg Comprimido",
+    "category": "Anti-hipertensivo",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 6000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0045",
+    "name": "Anlodipino Besilato 5mg Comprimido",
+    "category": "Anti-hipertensivo",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 4500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0046",
+    "name": "Atenolol 50mg Comprimido",
+    "category": "Anti-hipertensivo",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 4000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0047",
+    "name": "Carvedilol 6.25mg Comprimido",
+    "category": "Cardiovascular",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 3500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0048",
+    "name": "Furosemida 10mg/mL Ampola 2mL",
+    "category": "Diurético",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 3927,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0049",
+    "name": "Furosemida 40mg Comprimido",
+    "category": "Diurético",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 5000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0050",
+    "name": "Espironolactona 25mg Comprimido",
+    "category": "Diurético",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0051",
+    "name": "Hidroclorotiazida 25mg Comprimido",
+    "category": "Diurético",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 4500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0052",
+    "name": "Midazolam 5mg/mL Ampola 3mL",
+    "category": "Sedativo/Hipnótico",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 2500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0053",
+    "name": "Midazolam 5mg/mL Ampola 10mL",
+    "category": "Sedativo/Hipnótico",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0054",
+    "name": "Propofol 10mg/mL Emulsão Injetável 20mL",
+    "category": "Anestésico Geral",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 2000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0055",
+    "name": "Cetamina Cloridrato 50mg/mL Frasco 10mL",
+    "category": "Anestésico Geral",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0056",
+    "name": "Diazepam 5mg/mL Ampola 2mL",
+    "category": "Benzodiazepínico",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 2200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0057",
+    "name": "Diazepam 10mg Comprimido",
+    "category": "Benzodiazepínico",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0058",
+    "name": "Rocurônio Brometo 10mg/mL Frasco 5mL",
+    "category": "Bloqueador Neuromuscular",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0059",
+    "name": "Succinilcolina Cloreto 100mg Pó Frasco",
+    "category": "Bloqueador Neuromuscular",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 900,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0060",
+    "name": "Lidocaína 2% sem Vasoconstritor Frasco 20mL",
+    "category": "Anestésico Local",
+    "uom": "Frasco",
+    "location": "Farmácia Central",
+    "quantity_available": 2500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0061",
+    "name": "Lidocaína 2% com Epinefrina Frasco 20mL",
+    "category": "Anestésico Local",
+    "uom": "Frasco",
+    "location": "Farmácia Central",
+    "quantity_available": 1800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0062",
+    "name": "Bupivacaína 0.5% Isobárica Frasco 20mL",
+    "category": "Anestésico Local",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0063",
+    "name": "Enoxaparina Sódica 40mg/0.4mL Seringa Preenchida",
+    "category": "Anticoagulante",
+    "uom": "Seringa",
+    "location": "Farmácia Central",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0064",
+    "name": "Enoxaparina Sódica 60mg/0.6mL Seringa Preenchida",
+    "category": "Anticoagulante",
+    "uom": "Seringa",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 2200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0065",
+    "name": "Heparina Sódica 5000 UI/mL Frasco 5mL",
+    "category": "Anticoagulante",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0066",
+    "name": "Varfarina Sódica 5mg Comprimido",
+    "category": "Anticoagulante Oral",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 2500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0067",
+    "name": "Clopidogrel 75mg Comprimido",
+    "category": "Antiagregante Plaquetário",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0068",
+    "name": "Ácido Acetilsalicílico 100mg Comprimido",
+    "category": "Antiagregante Plaquetário",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 6000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0069",
+    "name": "Ácido Tranexâmico 50mg/mL Ampola 5mL",
+    "category": "Hemostático",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1400,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0070",
+    "name": "Fitomenadiona (Vitamina K1) 10mg/mL Ampola 1mL",
+    "category": "Vitamina/Hemostático",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 1600,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0071",
+    "name": "Omeprazol 40mg Pó para Injeção Frasco",
+    "category": "Inibidor Bomba Prótons",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 3500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0072",
+    "name": "Omeprazol 20mg Cápsula",
+    "category": "Inibidor Bomba Prótons",
+    "uom": "Cápsula",
+    "location": "Farmácia Central",
+    "quantity_available": 5000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0073",
+    "name": "Pantoprazol 40mg Pó Injetável Frasco",
+    "category": "Inibidor Bomba Prótons",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 2000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0074",
+    "name": "Metoclopramida 5mg/mL Ampola 2mL",
+    "category": "Antiemético",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0075",
+    "name": "Bromoprida 10mg/2mL Ampola",
+    "category": "Antiemético",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 2433,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0076",
+    "name": "Dimeticona 75mg/mL Gotas Frasco 15mL",
+    "category": "Antiflatulento",
+    "uom": "Frasco",
+    "location": "Farmácia Central",
+    "quantity_available": 1200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0077",
+    "name": "Lactulose 667mg/mL Xarope 120mL",
+    "category": "Laxativo",
+    "uom": "Frasco",
+    "location": "Farmácia Central",
+    "quantity_available": 900,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0078",
+    "name": "Salbutamol Sulfato Spray 100mcg/dose",
+    "category": "Broncodilatador",
+    "uom": "Frasco",
+    "location": "Farmácia Central",
+    "quantity_available": 1000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0079",
+    "name": "Brometo de Ipratrópio Solução Inalação 0.25mg/mL",
+    "category": "Broncodilatador",
+    "uom": "Frasco",
+    "location": "Farmácia Central",
+    "quantity_available": 1200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0080",
+    "name": "Dexametasona Fosfato 4mg/mL Ampola 2.5mL",
+    "category": "Corticoide",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0081",
+    "name": "Hidrocortisona Succinato 100mg Frasco Pó",
+    "category": "Corticoide",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 2500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0082",
+    "name": "Hidrocortisona Succinato 500mg Frasco Pó",
+    "category": "Corticoide",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0083",
+    "name": "Prednisona 20mg Comprimido",
+    "category": "Corticoide",
+    "uom": "Comprimido",
+    "location": "Farmácia Central",
+    "quantity_available": 3500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0084",
+    "name": "Metilprednisolona Succinato 500mg Frasco",
+    "category": "Corticoide",
+    "uom": "Frasco-Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 800,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0085",
+    "name": "Prometazina Cloridrato 25mg/mL Ampola 2mL",
+    "category": "Anti-histamínico",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 2000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0086",
+    "name": "Glicose 50% Ampola 10mL",
+    "category": "Solução Hipertônica",
+    "uom": "Ampola",
+    "location": "Farmácia Central",
+    "quantity_available": 3500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0087",
+    "name": "Glicose 50% Frasco 500mL",
+    "category": "Solução Hipertônica",
+    "uom": "Frasco",
+    "location": "Almoxarifado Central",
+    "quantity_available": 1000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0088",
+    "name": "Cloreto de Potássio 19.1% Ampola 10mL",
+    "category": "Eletrólito Concentrado",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0089",
+    "name": "Cloreto de Sódio 20% Ampola 10mL",
+    "category": "Eletrólito Concentrado",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0090",
+    "name": "Bicarbonato de Sódio 8.4% Frasco 250mL",
+    "category": "Eletrólito/Tampão",
+    "uom": "Frasco",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1200,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0091",
+    "name": "Gluconato de Cálcio 10% Ampola 10mL",
+    "category": "Eletrólito",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 2000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0092",
+    "name": "Sulfato de Magnésio 50% Ampola 10mL",
+    "category": "Eletrólito",
+    "uom": "Ampola",
+    "location": "Farmácia Satélite UTI",
+    "quantity_available": 1500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0093",
+    "name": "Soro Fisiológico 0.9% 100mL Bolsa",
+    "category": "Solução Parenteral",
+    "uom": "Bolsa",
+    "location": "Almoxarifado Central",
+    "quantity_available": 5000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0094",
+    "name": "Soro Fisiológico 0.9% 250mL Bolsa",
+    "category": "Solução Parenteral",
+    "uom": "Bolsa",
+    "location": "Almoxarifado Central",
+    "quantity_available": 5000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0095",
+    "name": "Ringer com Lactato 500mL Bolsa",
+    "category": "Solução Parenteral",
+    "uom": "Bolsa",
+    "location": "Almoxarifado Central",
+    "quantity_available": 4500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0096",
+    "name": "Soro Glicosado 5% 500mL Bolsa",
+    "category": "Solução Parenteral",
+    "uom": "Bolsa",
+    "location": "Almoxarifado Central",
+    "quantity_available": 4000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0097",
+    "name": "Seringa Descartável 10mL sem Agulha",
+    "category": "Insumo Hospitalar",
+    "uom": "Unidade",
+    "location": "Almoxarifado Central",
+    "quantity_available": 20000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0098",
+    "name": "Seringa Descartável 20mL sem Agulha",
+    "category": "Insumo Hospitalar",
+    "uom": "Unidade",
+    "location": "Almoxarifado Central",
+    "quantity_available": 15000,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0099",
+    "name": "Luva de Procedimento Não Cirúrgica M Caixa 100un",
+    "category": "EPI / Insumo",
+    "uom": "Caixa",
+    "location": "Almoxarifado Central",
+    "quantity_available": 2500,
+    "is_synthetic": true
+  },
+  {
+    "id": "MED_0100",
+    "name": "Luva Cirúrgica Estéril 7.5 Par",
+    "category": "Insumo Cirúrgico",
+    "uom": "Par",
+    "location": "Almoxarifado Central",
+    "quantity_available": 3000,
+    "is_synthetic": true
+  }
+]

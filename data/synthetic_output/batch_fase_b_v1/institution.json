@@ -1,0 +1,17 @@
+[
+  {
+    "cnes_code": "7654321",
+    "name": "Hospital Geral de Ensino QIMED",
+    "institution_type": "Hospital Geral",
+    "city_code_7": "2304400",
+    "uf": "CE",
+    "wards": [
+      "Enfermaria Clínica",
+      "Enfermaria Cirúrgica",
+      "UTI Adulto",
+      "Pronto Atendimento",
+      "Ambulatório de Especialidades"
+    ],
+    "beds_count": 60
+  }
+]

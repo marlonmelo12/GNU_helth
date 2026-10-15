@@ -1,0 +1,16 @@
+{
+  "batch_dir": "/app/data/synthetic_output/batch_fase_b_v1",
+  "status": "SUCCESS",
+  "duration_seconds": 386.67,
+  "counts": {
+    "professionals": 60,
+    "patients": 2000,
+    "shifts": 0,
+    "encounters": 8000,
+    "inpatients": 500,
+    "labs": 5000,
+    "stock_items": 15,
+    "stock_dispensations": 1773
+  },
+  "timestamp": "2026-10-13T12:49:25.282030"
+}
