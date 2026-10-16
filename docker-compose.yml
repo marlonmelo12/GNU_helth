@@ -48,11 +48,22 @@ services:
     networks:
       - qimed-network
 
+  hospital-sim:
+    # Gerador v2 do hospital simulado + verificacoes de lote (sem dependencia do ERP)
+    build:
+      context: .
+      dockerfile: docker/generator/Dockerfile
+    profiles: ["tools"]
+    volumes:
+      - ./:/app
+    networks:
+      - qimed-network
+
 volumes:
   gnuhealth-postgres-data:
   gnuhealth-data:
 
 networks:
   qimed-network:
+    # mesma rede do qimed_pipeline (o adaptador do QIMED le o ERP por ela); criada se nao existir
     name: qimed_pipeline_qimed-network
-    driver: bridge

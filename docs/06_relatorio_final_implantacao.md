@@ -163,7 +163,7 @@ Executados via `pytest tests/test_gnuhealth_integration.py -v`:
 ### 1. Inicialização dos Serviços
 ```powershell
 # Iniciar o banco e o servidor do GNU Health
-docker compose -f docker-compose.gnuhealth.yml up -d
+docker compose up -d
 ```
 
 ### 2. Acesso à Interface Gráfica

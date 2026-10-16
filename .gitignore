@@ -55,3 +55,7 @@ scratch/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Lotes do gerador v2 (grandes; reproduziveis pela semente)
+data/lotes_v2/
+.ops/
