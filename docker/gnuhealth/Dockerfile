@@ -48,7 +48,8 @@ RUN pip install --no-cache-dir \
 # Copia configurações e script de entrada
 COPY config/gnuhealth/trytond.conf /etc/trytond.conf
 COPY docker/gnuhealth/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh && mkdir -p /var/lib/trytond/db
+# remove CR de checkouts Windows (autocrlf) para o shebang funcionar
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh && mkdir -p /var/lib/trytond/db
 
 EXPOSE 8000
 

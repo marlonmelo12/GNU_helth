@@ -1,0 +1,4 @@
+# Dependencias exatas do gerador v2 (src/hospital_sim)
+ortools==9.12.4544
+PyYAML==6.0.2
+pytest==8.3.4

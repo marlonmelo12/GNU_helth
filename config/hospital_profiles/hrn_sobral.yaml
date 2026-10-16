@@ -1,0 +1,92 @@
+# Perfil do hospital simulado: referencia Hospital Regional Norte (Sobral/CE), CNES 6848710.
+# Leitos: CNES-LT 2026-05 (345 leitos SUS). Quadro e producao: CNES-PF e SIH/SIA, via
+# config/calibracao/hrn_6848710.json (somente agregados). O hospital gerado e FICTICIO:
+# nome e CNES proprios, nenhum registro real copiado.
+#
+# Campos marcados "parametro" nao tem fonte publica e sao valores de partida, ajustaveis.
+
+hospital:
+  nome: "Hospital Regional de Referencia QIMED"
+  cnes_ficticio: "7654321"
+  cnes_referencia: "6848710"
+  municipio_ibge: "231290"
+  uf: CE
+  calibracao: config/calibracao/hrn_6848710.json
+
+# Multiplica leitos, quadro e demanda (1.0 = porte da referencia; 0.4 ~ 140 leitos)
+escala_porte: 1.0
+
+# Horas de enfermagem por paciente/dia e % minima de enfermeiros (Resolucao COFEN 543/2017)
+cuidado:
+  minimo:        {horas: 4,  pct_enfermeiro: 0.33}
+  intermediario: {horas: 6,  pct_enfermeiro: 0.33}
+  alta_dependencia: {horas: 10, pct_enfermeiro: 0.36}
+  semi_intensivo: {horas: 10, pct_enfermeiro: 0.42}
+  intensivo:     {horas: 18, pct_enfermeiro: 0.52}
+
+ocupacao_referencia: 0.85      # para dimensionar a escala
+dias_maximos_espera_leito: 2   # parametro: depois disso o paciente e transferido por falta de leito
+leitos_extras_pct: 0.10        # parametro: macas/leitos extras nas enfermarias (lotacao acima da capacidade, comum no SUS)
+
+setores:
+  - {codigo: CLIN_A,   nome: "Clinica Medica A",          tipo: enfermaria, leitos: 42, publico: adulto, cuidado: intermediario, cnes_codleito: "33",
+     medicos_turno: {dia: 2, noite: 1}, especialidades: [CLINICA_MEDICA], farmacia: FARM_CENTRAL}
+  - {codigo: CLIN_B,   nome: "Clinica Medica B",          tipo: enfermaria, leitos: 20, publico: adulto, cuidado: intermediario, cnes_codleito: "42",
+     medicos_turno: {dia: 1, noite: 1}, especialidades: [CLINICA_MEDICA], farmacia: FARM_CENTRAL}
+  - {codigo: OUTRAS,   nome: "Outras especialidades",     tipo: enfermaria, leitos: 16, publico: adulto, cuidado: alta_dependencia, cnes_codleito: "34",
+     medicos_turno: {dia: 1, noite: 0}, especialidades: [CLINICA_MEDICA], farmacia: FARM_CENTRAL}
+  - {codigo: CIRURG,   nome: "Clinica Cirurgica",         tipo: enfermaria, leitos: 69, publico: adulto, cuidado: intermediario, cnes_codleito: "03",
+     medicos_turno: {dia: 2, noite: 1}, especialidades: [CIRURGIA_GERAL, CIRURGIA_VASCULAR, NEUROCIRURGIA, ORTOPEDIA, UROLOGIA], farmacia: FARM_CENTRAL}
+  - {codigo: OBST,     nome: "Obstetricia",               tipo: enfermaria, leitos: 45, publico: obstetrico, cuidado: intermediario, cnes_codleito: "43",
+     medicos_turno: {dia: 2, noite: 2}, especialidades: [OBSTETRICIA], farmacia: FARM_CENTRAL}
+  - {codigo: PED,      nome: "Pediatria",                 tipo: enfermaria, leitos: 40, publico: pediatrico, cuidado: intermediario, cnes_codleito: "45",
+     medicos_turno: {dia: 1, noite: 1}, especialidades: [PEDIATRIA, CIRURGIA_PEDIATRICA], farmacia: FARM_CENTRAL}
+  - {codigo: UTI_AD,   nome: "UTI Adulto",                tipo: uti, leitos: 54, publico: adulto, cuidado: intensivo, cnes_codleito: "75",
+     medicos_turno: {dia: 6, noite: 6}, especialidades: [MEDICINA_INTENSIVA, CLINICA_MEDICA], farmacia: FARM_UTI}
+  - {codigo: UTI_PED,  nome: "UTI Pediatrica",            tipo: uti, leitos: 10, publico: pediatrico, cuidado: intensivo, cnes_codleito: "78",
+     medicos_turno: {dia: 1, noite: 1}, especialidades: [PEDIATRIA, MEDICINA_INTENSIVA], farmacia: FARM_UTI}
+  - {codigo: UTI_NEO,  nome: "UTI Neonatal",              tipo: uti, leitos: 10, publico: neonatal, cuidado: intensivo, cnes_codleito: "81",
+     medicos_turno: {dia: 1, noite: 1}, especialidades: [PEDIATRIA], farmacia: FARM_UTI}
+  - {codigo: UCINCO,   nome: "UCI Neonatal Convencional", tipo: enfermaria, leitos: 30, publico: neonatal, cuidado: semi_intensivo, cnes_codleito: "92",
+     medicos_turno: {dia: 1, noite: 1}, especialidades: [PEDIATRIA], farmacia: FARM_CENTRAL}
+  - {codigo: UCINCA,   nome: "UCI Neonatal Canguru",      tipo: enfermaria, leitos: 9,  publico: neonatal, cuidado: minimo, cnes_codleito: "93",
+     medicos_turno: {dia: 0, noite: 0}, especialidades: [PEDIATRIA], farmacia: FARM_CENTRAL}
+  # Sem leito no CNES: capacidade de observacao e salas sao parametros
+  - {codigo: PS,       nome: "Pronto-socorro",            tipo: urgencia, leitos: 20, publico: todos, cuidado: alta_dependencia, parametro: true,
+     medicos_turno: {dia: 4, noite: 3}, especialidades: [CLINICA_MEDICA, PEDIATRIA], farmacia: FARM_CENTRAL}
+  - {codigo: CC,       nome: "Centro Cirurgico e Obstetrico", tipo: centro_cirurgico, salas: 6, parametro: true,
+     medicos_turno: {dia: 4, noite: 2}, especialidades: [ANESTESIOLOGIA], farmacia: FARM_CC,
+     enfermagem_turno: {enfermeiro: 3, tecnico: 8}}
+
+estoque:
+  locais:
+    - {codigo: ALMOX,        nome: "Almoxarifado Central",           tipo: armazem}
+    - {codigo: FARM_CENTRAL, nome: "Farmacia Central (dose unitaria)", tipo: farmacia}
+    - {codigo: FARM_UTI,     nome: "Farmacia Satelite UTI",           tipo: satelite, abastecida_por: FARM_CENTRAL}
+    - {codigo: FARM_CC,      nome: "Farmacia Satelite Centro Cirurgico", tipo: satelite, abastecida_por: FARM_CENTRAL}
+  cobertura_dias: {A: 20, B: 30, C: 45}       # estoque maximo da farmacia central por classe ABC
+  estoque_seguranca_dias: 5
+  satelite_min_max_dias: [2, 5]
+  fornecedores: 6
+  lead_time_dias: [3, 15]
+  prob_atraso_entrega: 0.10
+  prob_entrega_parcial: 0.05
+  validade_meses: [6, 24]
+  prob_lote_validade_curta: 0.05              # 2 a 4 meses
+  prob_avaria_por_dispensacao: 0.0005
+  prob_devolucao: 0.03
+  inventario_ciclico_pct_itens_mes: 0.20
+  prob_divergencia_inventario: 0.01
+
+escala:
+  regimes:
+    CLT_12x36: {turno_horas: 12, descanso_min_horas: 36, max_turnos_mes: 16}
+    PLANTAO_PJ: {turno_horas: 12, descanso_min_horas: 11, max_turnos_mes: 14, permite_24h: true}
+  regime_por_categoria: {ENFERMEIRO: CLT_12x36, TECNICO_ENFERMAGEM: CLT_12x36, MEDICO: PLANTAO_PJ}
+  ferias_dias_ano: 30
+  indice_seguranca_tecnica: 0.20             # parametro: folga do quadro para ferias e ausencias
+  prob_falta: 0.03
+  prob_atestado: 0.015
+  prob_troca: 0.02
+  prob_atraso_relevante: 0.01                 # atraso de 15 a 40 min no ponto
+  solver_segundos_por_pool: 20
