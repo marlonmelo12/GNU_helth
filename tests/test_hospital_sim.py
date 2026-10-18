@@ -75,3 +75,30 @@ def test_lote_v1_e_reprovado_pelos_defeitos_do_diagnostico():
     # estoque sem lote/entradas/prescricao, escala que nao cobre o periodo e UTI subdimensionada,
     # atendimentos apos obito e CID incompativel com idade
     assert {"E2", "E6", "E7", "R6", "R8", "C1", "C3"} <= falhas
+
+
+def test_sazonalidade_de_ausencias_multiplica_faltas_e_atestados_do_mes():
+    import random
+    from datetime import datetime, timedelta
+    from src.hospital_sim.escala import gerar_quadro, realizar
+    from src.hospital_sim.perfil import carregar_perfil
+
+    perfil = carregar_perfil(PERFIL, 0.4)
+    quadro = gerar_quadro(perfil, random.Random(1), date(2026, 5, 1), date(2026, 5, 31))
+    enf = [p for p in quadro if p["categoria"] == "ENFERMEIRO"][:40]
+    planejada = []
+    for i in range(1200):  # turnos de 12 h espacados por profissional (descanso respeitado)
+        p = enf[i % len(enf)]
+        ini = datetime(2026, 5, 1, 7) + timedelta(days=(i // len(enf)) % 30, hours=12 * ((i // len(enf)) // 30))
+        planejada.append({"id": f"P{i}", "profissional_id": p["id"], "data": ini.date().isoformat(),
+                          "inicio": ini.isoformat(), "fim": (ini + timedelta(hours=12)).isoformat(),
+                          "setor": p["lotacao"], "papel": "ENFERMEIRO", "turno": "D"})
+
+    def ausencias(saz):
+        perfil.bruto["escala"]["sazonalidade_ausencia"] = saz
+        r = realizar(perfil, quadro, planejada, random.Random(2))
+        return sum(x["situacao"] in ("FALTA", "ATESTADO") for x in r)
+
+    base = ausencias({})
+    assert ausencias({"06": 3.0}) == base  # fator de outro mes nao muda maio
+    assert ausencias({"05": 3.0}) > 2 * base
