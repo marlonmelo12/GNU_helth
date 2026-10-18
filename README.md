@@ -44,4 +44,6 @@ docker compose --profile tools run --rm hospital-sim gerar --inicio 2026-05-01 -
 
 ## Histórico
 
-O gerador v1 e o script de reparo com SQL direto foram removidos. Ambos foram substituídos pelo gerador v2, porque o lote v1 é reprovado pelas invariantes. O lote v1 (`data/synthetic_output/batch_fase_b_v1`) fica como referência desse teste. Os documentos `docs/01` a `docs/06` registram a implantação original.
+O gerador v1 e o script de reparo com SQL direto foram removidos. Ambos foram substituídos pelo gerador v2, porque o lote v1 é reprovado pelas invariantes. O lote v1 (`data/synthetic_output/batch_fase_b_v1`) fica como referência desse teste.
+
+A base de demonstração do ERP é o dump `data/gnuhealth_backup_20261014.dump`: 1.905 pacientes e 548 internações de 01/01/2026 a 21/09/2026. A arquitetura da integração com o QIMED e o mapeamento para a Silver estão em `docs/02_arquitetura.md` e `docs/03_contratos_integracao.md`.
