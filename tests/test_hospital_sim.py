@@ -75,3 +75,68 @@ def test_lote_v1_e_reprovado_pelos_defeitos_do_diagnostico():
     # estoque sem lote/entradas/prescricao, escala que nao cobre o periodo e UTI subdimensionada,
     # atendimentos apos obito e CID incompativel com idade
     assert {"E2", "E6", "E7", "R6", "R8", "C1", "C3"} <= falhas
+
+
+def test_sazonalidade_de_ausencias_multiplica_faltas_e_atestados_do_mes():
+    import random
+    from datetime import datetime, timedelta
+    from src.hospital_sim.escala import gerar_quadro, realizar
+    from src.hospital_sim.perfil import carregar_perfil
+
+    perfil = carregar_perfil(PERFIL, 0.4)
+    quadro = gerar_quadro(perfil, random.Random(1), date(2026, 5, 1), date(2026, 5, 31))
+    enf = [p for p in quadro if p["categoria"] == "ENFERMEIRO"][:40]
+    planejada = []
+    for i in range(1200):  # turnos de 12 h espacados por profissional (descanso respeitado)
+        p = enf[i % len(enf)]
+        ini = datetime(2026, 5, 1, 7) + timedelta(days=(i // len(enf)) % 30, hours=12 * ((i // len(enf)) // 30))
+        planejada.append({"id": f"P{i}", "profissional_id": p["id"], "data": ini.date().isoformat(),
+                          "inicio": ini.isoformat(), "fim": (ini + timedelta(hours=12)).isoformat(),
+                          "setor": p["lotacao"], "papel": "ENFERMEIRO", "turno": "D"})
+
+    def ausencias(saz):
+        perfil.bruto["escala"]["sazonalidade_ausencia"] = saz
+        r = realizar(perfil, quadro, planejada, random.Random(2))
+        return sum(x["situacao"] in ("FALTA", "ATESTADO") for x in r)
+
+    base = ausencias({})
+    assert ausencias({"06": 3.0}) == base  # fator de outro mes nao muda maio
+    assert ausencias({"05": 3.0}) > 2 * base
+
+
+def test_gerar_serie_um_lote_por_mes_e_retoma(tmp_path, monkeypatch):
+    from src.hospital_sim import __main__ as cli
+    assert [i.isoformat() for i, _ in cli.meses("2024-11", "2025-02")] == ["2024-11-01", "2024-12-01", "2025-01-01", "2025-02-01"]
+    assert list(cli.meses("2024-02", "2024-02")) == [(date(2024, 2, 1), date(2024, 2, 29))]
+    gerados = []
+
+    def falso_gerar(perfil, ini, fim, semente, saida, porte, aquec):
+        gerados.append(os.path.basename(saida))
+        os.makedirs(saida, exist_ok=True)
+        man = {"gerador": f"hospital_sim {cli.__version__}", "semente": semente, "perfil": {"sha256": cli._sha(perfil)},
+               "hospital": {"escala_porte": porte},
+               "duracao_segundos": 0}
+        with open(os.path.join(saida, "manifest.json"), "w", encoding="utf-8") as fh:
+            json.dump(man, fh)
+        with open(os.path.join(saida, "relatorio_invariantes.json"), "w", encoding="utf-8") as fh:
+            json.dump({"aprovado": True}, fh)
+        return man
+
+    monkeypatch.setattr(cli, "gerar", falso_gerar)
+    monkeypatch.setattr(cli, "_verificar", lambda d: True)
+    assert cli.gerar_serie(PERFIL, "2025-12", "2026-01", 7, str(tmp_path), "hrn", 0.4)
+    assert gerados == ["hrn_202512", "hrn_202601"]
+    assert cli.gerar_serie(PERFIL, "2025-12", "2026-02", 7, str(tmp_path), "hrn", 0.4)  # retoma: so o mes novo
+    assert gerados[2:] == ["hrn_202602"]
+    cli.gerar_serie(PERFIL, "2025-12", "2025-12", 8, str(tmp_path), "hrn", 0.4)  # outra semente regera
+    assert gerados[3:] == ["hrn_202512"]
+
+
+def test_meses_diferentes_tem_eventos_diferentes_e_o_mesmo_quadro(lote, tmp_path):
+    d, _ = lote  # 2026-05-01 a 04, semente 7
+    gerar(PERFIL, date(2026, 6, 1), date(2026, 6, 4), 7, str(tmp_path / "jun"), escala_porte=0.4, aquecimento_dias=10)
+    a, b = lote_io.ler(d), lote_io.ler(str(tmp_path / "jun"))
+    chave = lambda p: (p["id"], p["sexo"], p["categoria"], p["cbo"])
+    assert sorted(map(chave, a["profissionais"])) == sorted(map(chave, b["profissionais"]))  # mesma pessoa todo mes
+    eventos = lambda l: [(r["profissional_id"], r["situacao"]) for r in l["escala_realizada"]]
+    assert eventos(a) != eventos(b)  # antes da 2.1.0 meses de mesmo tamanho repetiam faltas e atestados

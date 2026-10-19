@@ -87,6 +87,9 @@ escala:
   indice_seguranca_tecnica: 0.20             # parametro: folga do quadro para ferias e ausencias
   prob_falta: 0.03
   prob_atestado: 0.015
+  # parametro: multiplicador mensal de faltas e atestados ("01" a "12"); mes ausente = 1.0 (sem sazonalidade).
+  # Ex.: {"03": 1.2, "04": 1.3, "05": 1.2} simula mais ausencias na quadra chuvosa. Premissa, nao dado observado.
+  sazonalidade_ausencia: {}
   prob_troca: 0.02
   prob_atraso_relevante: 0.01                 # atraso de 15 a 40 min no ponto
   solver_segundos_por_pool: 20

@@ -364,12 +364,15 @@ def realizar(perfil: Perfil, quadro: List[Dict], planejada: List[Dict], rng: ran
         ini, fim = datetime.fromisoformat(r["inicio"]), datetime.fromisoformat(r["fim"])
         pid = r["profissional_id"]
         u = rng.random()
+        # sazonalidade: multiplicador do mes do turno sobre faltas e atestados (sem o parametro, 1.0)
+        fator = float(e.get("sazonalidade_ausencia", {}).get(r["data"][5:7], 1.0))
+        p_falta, p_atestado = e["prob_falta"] * fator, e["prob_atestado"] * fator
         situacao = "CUMPRIDO"
         if pid in atestado_ate and ini < atestado_ate[pid]:
             situacao = "ATESTADO"
-        elif u < e["prob_falta"]:
+        elif u < p_falta:
             situacao = "FALTA"
-        elif u < e["prob_falta"] + e["prob_atestado"]:
+        elif u < p_falta + p_atestado:
             situacao = "ATESTADO"
             atestado_ate[pid] = ini + timedelta(days=rng.randint(1, 3))
         seq += 1

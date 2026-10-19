@@ -11,6 +11,8 @@ em todas as invariantes.
 docker compose --profile tools build hospital-sim
 # gerar (porte real, maio/2026)
 docker compose --profile tools run --rm hospital-sim gerar --inicio 2026-05-01 --fim 2026-05-31 --semente 42 --saida data/lotes_v2/hrn_202605
+# serie mensal (RH do qimed_pipeline#1: 24 meses, um lote hrn_AAAAMM por mes; rodar de novo retoma de onde parou)
+docker compose --profile tools run --rm hospital-sim gerar-serie --de 2024-06 --ate 2026-05 --semente 42
 # porte medio com as mesmas proporcoes (~140 leitos)
 docker compose --profile tools run --rm hospital-sim gerar --inicio 2026-05-01 --fim 2026-05-31 --escala-porte 0.4 --saida data/lotes_v2/hrn_medio_202605
 # verificar qualquer lote (v2 ou v1)
