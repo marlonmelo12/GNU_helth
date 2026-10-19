@@ -3,14 +3,18 @@ CLI do hospital simulado v2.
 
   python -m src.hospital_sim gerar --perfil config/hospital_profiles/hrn_sobral.yaml \
       --inicio 2026-05-01 --fim 2026-05-31 --semente 42 --saida data/lotes_v2/hrn_202605
+  python -m src.hospital_sim gerar-serie --de 2024-06 --ate 2026-05 --semente 42 --saida-dir data/lotes_v2
   python -m src.hospital_sim verificar --lote data/lotes_v2/hrn_202605
   python -m src.hospital_sim verificar --lote data/synthetic_output/batch_fase_b_v1   # lote v1
 
-Codigo de saida: 0 = lote aprovado em todas as invariantes; 1 = reprovado.
+gerar-serie grava um lote por mes (<prefixo>_AAAAMM), um de cada vez, e pula o mes que ja tem lote com o mesmo perfil,
+semente e porte: interrompida, retoma de onde parou.
+Codigo de saida: 0 = lote(s) aprovado(s) em todas as invariantes; 1 = algum reprovado.
 """
 from __future__ import annotations
 
 import argparse
+import calendar
 import hashlib
 import json
 import os
@@ -60,7 +64,9 @@ def gerar(perfil_path: str, inicio: date, fim: date, semente: int, saida: str, e
           aquecimento_dias: int = 45) -> dict:
     t0 = time.time()
     perfil = carregar_perfil(perfil_path, escala_porte)
-    sub = lambda k: random.Random(semente * 1000 + k)  # fluxos independentes e reprodutiveis
+    # fluxos independentes e reprodutiveis; o quadro (1) so depende da semente para o profissional ser o mesmo
+    # em todos os meses, e os eventos (2+) dependem tambem do periodo: sem isso meses de mesmo tamanho se repetiam
+    sub = lambda k: random.Random(semente * 1000 + k if k == 1 else f"{semente}:{inicio.isoformat()}:{k}")
     # Aquecimento: o hospital ja esta ocupado no primeiro dia do periodo (nao comeca vazio)
     sim_ini = inicio - timedelta(days=aquecimento_dias)
     quadro = gerar_quadro(perfil, sub(1), inicio, fim)
@@ -136,6 +142,53 @@ def _relatorio(res, destino: str) -> None:
         fh.write("\n".join(linhas) + "\n")
 
 
+def _verificar(destino: str) -> bool:
+    res = verificar(destino)
+    if lote_io.eh_v2(destino):  # nao grava relatorio dentro de lotes v1 versionados
+        _relatorio(res, destino)
+    print(json.dumps({"lote": destino, "aprovado": res.aprovado,
+                      "falhas": [c["codigo"] for c in res.checks if c["status"] != "OK"]}), flush=True)
+    return res.aprovado
+
+
+def meses(de: str, ate: str):
+    """(inicio, fim) de cada mes entre AAAA-MM e AAAA-MM, inclusive."""
+    a, m = map(int, de.split("-"))
+    fa, fm = map(int, ate.split("-"))
+    while (a, m) <= (fa, fm):
+        yield date(a, m, 1), date(a, m, calendar.monthrange(a, m)[1])
+        a, m = (a + 1, 1) if m == 12 else (a, m + 1)
+
+
+def _ja_gerado(destino: str, perfil_path: str, semente: int, escala_porte) -> bool:
+    try:
+        with open(os.path.join(destino, "manifest.json"), encoding="utf-8") as fh:
+            man = json.load(fh)
+    except (OSError, ValueError):
+        return False
+    porte = carregar_perfil(perfil_path, escala_porte).bruto["escala_porte"]
+    return (man.get("gerador") == f"hospital_sim {__version__}" and man.get("semente") == semente
+            and man.get("perfil", {}).get("sha256") == _sha(perfil_path)
+            and man.get("hospital", {}).get("escala_porte") == porte
+            and os.path.exists(os.path.join(destino, "relatorio_invariantes.json")))
+
+
+def gerar_serie(perfil_path: str, de: str, ate: str, semente: int, saida_dir: str, prefixo: str,
+                escala_porte=None, aquecimento_dias: int = 45) -> bool:
+    aprovados = True
+    for ini, fim in meses(de, ate):
+        destino = os.path.join(saida_dir, f"{prefixo}_{ini:%Y%m}")
+        if _ja_gerado(destino, perfil_path, semente, escala_porte):
+            print(f"{destino}: ja gerado com este perfil e semente, pulando", flush=True)
+            with open(os.path.join(destino, "relatorio_invariantes.json"), encoding="utf-8") as fh:
+                aprovados &= bool(json.load(fh).get("aprovado"))
+            continue
+        man = gerar(perfil_path, ini, fim, semente, destino, escala_porte, aquecimento_dias)
+        print(f"{destino}: gerado em {man['duracao_segundos']} s", flush=True)
+        aprovados &= _verificar(destino)
+    return aprovados
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="hospital_sim", description=__doc__.splitlines()[1])
     sp = ap.add_subparsers(dest="cmd", required=True)
@@ -147,9 +200,26 @@ def main(argv=None) -> int:
     g.add_argument("--escala-porte", type=float, default=None)
     g.add_argument("--aquecimento-dias", type=int, default=45)
     g.add_argument("--saida", required=True)
+    s = sp.add_parser("gerar-serie")
+    s.add_argument("--perfil", default="config/hospital_profiles/hrn_sobral.yaml")
+    s.add_argument("--de", required=True, help="primeiro mes, AAAA-MM")
+    s.add_argument("--ate", required=True, help="ultimo mes, AAAA-MM")
+    s.add_argument("--semente", type=int, default=42)
+    s.add_argument("--escala-porte", type=float, default=None)
+    s.add_argument("--aquecimento-dias", type=int, default=45)
+    s.add_argument("--saida-dir", default="data/lotes_v2")
+    s.add_argument("--prefixo", default="hrn")
     v = sp.add_parser("verificar")
     v.add_argument("--lote", required=True)
     a = ap.parse_args(argv)
+    if a.cmd == "gerar-serie":
+        try:
+            if date.fromisoformat(f"{a.ate}-01") < date.fromisoformat(f"{a.de}-01"):
+                ap.error("--ate anterior a --de")
+        except ValueError:
+            ap.error("--de e --ate no formato AAAA-MM")
+        ok = gerar_serie(a.perfil, a.de, a.ate, a.semente, a.saida_dir, a.prefixo, a.escala_porte, a.aquecimento_dias)
+        return 0 if ok else 1
     if a.cmd == "gerar":
         ini, fim = date.fromisoformat(a.inicio), date.fromisoformat(a.fim)
         if fim < ini:
@@ -160,11 +230,7 @@ def main(argv=None) -> int:
         destino = a.saida
     else:
         destino = a.lote
-    res = verificar(destino)
-    if lote_io.eh_v2(destino):  # nao grava relatorio dentro de lotes v1 versionados
-        _relatorio(res, destino)
-    print(json.dumps({"aprovado": res.aprovado, "falhas": [c["codigo"] for c in res.checks if c["status"] != "OK"]}))
-    return 0 if res.aprovado else 1
+    return 0 if _verificar(destino) else 1
 
 
 if __name__ == "__main__":
